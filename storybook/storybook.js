@@ -24,5 +24,5 @@ class StorybookUIHMRRoot extends Component {
   }
 }
 
-AppRegistry.registerComponent('blacksmith', () => StorybookUIHMRRoot);
+AppRegistry.registerComponent('BlackSmith', () => StorybookUIHMRRoot);
 export default StorybookUIHMRRoot;
