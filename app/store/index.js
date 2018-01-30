@@ -1,13 +1,19 @@
 // @flow
 
 import { createStore, applyMiddleware, compose } from 'redux';
-import createLogger from 'redux-logger';
+import { createLogger } from 'redux-logger';
 import createSagaMiddleware, { END } from 'redux-saga';
+
+import clockMiddleware from '../middleware/clock';
 import rootReducer from '../reducers';
 
 const configureStore = (initialState) => {
   const sagaMiddleware = createSagaMiddleware();
-  const middleware = applyMiddleware(sagaMiddleware, createLogger());
+  const middleware = applyMiddleware(
+    sagaMiddleware,
+    clockMiddleware,
+    createLogger(),
+  );
 
   const store = createStore(
     rootReducer,
@@ -20,4 +26,4 @@ const configureStore = (initialState) => {
   return store;
 };
 
-export default configureStore({});
+export default configureStore;
