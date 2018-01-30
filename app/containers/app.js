@@ -2,9 +2,14 @@
 
 import React from 'react';
 import { View } from 'react-native';
+import { Provider } from 'react-redux';
+
+import store from '../store';
 
 const appBackgroundColor = { backgroundColor: 'blue' };
 
 export default () => (
-  <View style={appBackgroundColor} />
+  <Provider store={store}>
+    <View style={appBackgroundColor} />
+  </Provider>
 );
