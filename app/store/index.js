@@ -6,13 +6,18 @@ import createSagaMiddleware, { END } from 'redux-saga';
 
 import clockMiddleware from '../middleware/clock';
 import rootReducer from '../reducers';
+import { actionNames } from '../constants/action-names';
+
+const makeLoggerPredicate = (getState, action) => action.type !== actionNames.COUNT_SECOND;
 
 const configureStore = (initialState) => {
   const sagaMiddleware = createSagaMiddleware();
   const middleware = applyMiddleware(
     sagaMiddleware,
     clockMiddleware,
-    createLogger(),
+    createLogger({
+      predicate: makeLoggerPredicate,
+    }),
   );
 
   const store = createStore(
